@@ -6,4 +6,4 @@ A full implementation of the Raytracer described in [Ray Tracing in One Weekend]
 
 Each pixel is created as a future and then rendered.
 
-License MIT
+License GPL V3
