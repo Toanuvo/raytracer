@@ -56,7 +56,7 @@ class Vec(xi: Double = 0, yi: Double = 0, zi: Double = 0){
     }
   }
 
-  def unary_-() = new Vec(-x, -y, -z)
+  def unary_- = new Vec(-x, -y, -z)
 
   def near_zero(): Boolean = {
     val s = 1e-8
@@ -91,17 +91,19 @@ object Vec{
 
   def random_in_unit_sphere(rng: Random): Vec ={
     var out = Vec.random(-1, 1, rng)
-    do  {
+    while
       out = Vec.random(-1, 1, rng)
-    } while (out.length_squared() >= 1 )
+      out.length_squared() >= 1
+    do ()
     out
   }
 
   def random_in_unit_disk(rng: Random): Vec ={
     var out = new Vec(rng.between(-1, 1), rng.between(-1, 1), 0)
-    do  {
+    while
       out = new Vec(rng.between(-1, 1), rng.between(-1, 1), 0)
-    } while (out.length_squared() >= 1 )
+      out.length_squared() >= 1
+    do ()
     out
   }
 
@@ -112,7 +114,7 @@ object Vec{
   def refract(uv: Vec, n: Vec, etai_over_etat: Double): Vec = {
     val cos_theta = math.min(n.dot(-uv), 1)
     val r_out_perp = (uv + n*cos_theta) * etai_over_etat
-    val r_out_parallel = n * -math.sqrt(math.abs(1 - r_out_perp.length_squared))
+    val r_out_parallel = n * -math.sqrt(math.abs(1 - r_out_perp.length_squared()))
     r_out_parallel + r_out_perp
   }
   def cross(u: Vec, v: Vec): Vec = {

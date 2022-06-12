@@ -218,10 +218,7 @@ class RayTracer(cami: Camera, worldi: Array[Hittable], samples_pp: Int, max_dep:
 }
 
 object tracer {
-
-
-
-  def main(args: Array[String]): Unit ={
+  @main def main(): Unit ={
     def random_scene(): Array[Hittable] = {
       val rng = new Random(System.nanoTime())
       var objs  = collection.mutable.Buffer[Hittable]()
@@ -295,8 +292,8 @@ object tracer {
       3.0/2.0
     )
 
-    val raytracer = new RayTracer(cam, world, 50, 15, 1920)
-//    val raytracer = new RayTracer(cam, world, 30, 10, 400)
+//    val raytracer = new RayTracer(cam, world, 50, 15, 1920)
+    val raytracer = new RayTracer(cam, world, 30, 10, 400)
 
 
     val rendfile = new PrintWriter(new File("render_sc.ppm"))
